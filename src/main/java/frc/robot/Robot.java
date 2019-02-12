@@ -10,10 +10,13 @@ package frc.robot;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
-import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.TimedRobot;
+import frc.robot.subsystems.DriveSubsystem;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -22,11 +25,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * creating this project, you must also update the build.gradle file in the
  * project.
  */
-public class Robot extends IterativeRobot {
-  private static final String kDefaultAuto = "Default";
-  private static final String kCustomAuto = "My Auto";
-  private String m_autoSelected;
-  private final SendableChooser<String> m_chooser = new SendableChooser<>();
+public class Robot extends TimedRobot {
+  public static DriveSubsystem drivesub;
+  public static NetworkTableInstance inst;
+  public static NetworkTable smartDashboardTable;
+  public static NetworkTable camera1Table;
+  public static NetworkTableEntry connected;
+  public static NetworkTableEntry distance;
 
   /**
    * This function is run when the robot is first started up and should be
@@ -34,9 +39,12 @@ public class Robot extends IterativeRobot {
    */
   @Override
   public void robotInit() {
-    m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
-    m_chooser.addOption("My Auto", kCustomAuto);
-    SmartDashboard.putData("Auto choices", m_chooser);
+    drivesub = new DriveSubsystem();
+    inst = NetworkTableInstance.getDefault();
+    smartDashboardTable = inst.getTable("SmartDashboard/robotConnected");
+    camera1Table = inst.getTable("RaspberryPi/distanceFromCenter");
+    connected = smartDashboardTable.getEntry("key");
+    distance = camera1Table.getEntry("distance");
   }
 
   /**
@@ -63,6 +71,9 @@ public class Robot extends IterativeRobot {
     blTalon.set(ControlMode.PercentOutput, leftspeed);
     brTalon.set(ControlMode.PercentOutput,rightspeed);
 
+    connected.setBoolean(true);
+
+
   }
 
   /**
@@ -78,10 +89,7 @@ public class Robot extends IterativeRobot {
    */
   @Override
   public void autonomousInit() {
-    m_autoSelected = m_chooser.getSelected();
-    // autoSelected = SmartDashboard.getString("Auto Selector",
-    // defaultAuto);
-    System.out.println("Auto selected: " + m_autoSelected);
+
   }
 
   /**
@@ -89,15 +97,7 @@ public class Robot extends IterativeRobot {
    */
   @Override
   public void autonomousPeriodic() {
-    switch (m_autoSelected) {
-      case kCustomAuto:
-        // Put custom auto code here
-        break;
-      case kDefaultAuto:
-      default:
-        // Put default auto code here
-        break;
-    }
+
   }
 
   /**
