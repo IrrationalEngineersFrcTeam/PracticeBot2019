@@ -26,25 +26,32 @@ import frc.robot.subsystems.DriveSubsystem;
  * project.
  */
 public class Robot extends TimedRobot {
+  public static OI oi;
   public static DriveSubsystem drivesub;
   public static NetworkTableInstance inst;
   public static NetworkTable smartDashboardTable;
   public static NetworkTable camera1Table;
   public static NetworkTableEntry connected;
   public static NetworkTableEntry distance;
-
+  public static NetworkTableEntry piTest;
+  public static NetworkTableEntry encoderL;
+  public static NetworkTableEntry encoderR;
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
    */
   @Override
   public void robotInit() {
+    oi = new OI();
     drivesub = new DriveSubsystem();
     inst = NetworkTableInstance.getDefault();
-    smartDashboardTable = inst.getTable("SmartDashboard/robotConnected");
-    camera1Table = inst.getTable("RaspberryPi/distanceFromCenter");
-    connected = smartDashboardTable.getEntry("key");
+    smartDashboardTable = inst.getTable("SmartDashboard");
+    camera1Table = inst.getTable("RaspberryPi");
+    connected = smartDashboardTable.getEntry("robotConnection");
     distance = camera1Table.getEntry("distance");
+    encoderL = smartDashboardTable.getEntry("encoderL");
+    encoderR = smartDashboardTable.getEntry("encoderR");
+    piTest = smartDashboardTable.getEntry("timeRunning");
   }
 
   /**
@@ -61,7 +68,7 @@ public class Robot extends TimedRobot {
   TalonSRX frTalon = new TalonSRX(2);
   TalonSRX blTalon = new TalonSRX(0);
   TalonSRX brTalon = new TalonSRX(3);
-  
+
   @Override
   public void robotPeriodic() {
     double leftspeed = -joy1.getRawAxis(1) * .6;
@@ -69,10 +76,15 @@ public class Robot extends TimedRobot {
     flTalon.set(ControlMode.PercentOutput, leftspeed);
     frTalon.set(ControlMode.PercentOutput, rightspeed);
     blTalon.set(ControlMode.PercentOutput, leftspeed);
-    brTalon.set(ControlMode.PercentOutput,rightspeed);
+    brTalon.set(ControlMode.PercentOutput, rightspeed);
 
     connected.setBoolean(true);
-
+    System.out.println(distance.getDouble(0));
+    
+    //piTest.setDouble(distance.getDouble(0));
+    //encoderL.setDouble(leftspeed);
+    //encoderR.setDouble(rightspeed);
+    //System.out.println(smartDashboardTable.containsKey("key"));
 
   }
 
