@@ -51,7 +51,7 @@ public class Robot extends TimedRobot {
     distance = camera1Table.getEntry("distance");
     encoderL = smartDashboardTable.getEntry("encoderL");
     encoderR = smartDashboardTable.getEntry("encoderR");
-    piTest = smartDashboardTable.getEntry("timeRunning");
+    //piTest = smartDashboardTable.getEntry("timeRunning");
   }
 
   /**
@@ -80,7 +80,8 @@ public class Robot extends TimedRobot {
 
     connected.setBoolean(true);
     System.out.println(distance.getDouble(0));
-    
+    connected.setBoolean(true);
+
     //piTest.setDouble(distance.getDouble(0));
     //encoderL.setDouble(leftspeed);
     //encoderR.setDouble(rightspeed);
