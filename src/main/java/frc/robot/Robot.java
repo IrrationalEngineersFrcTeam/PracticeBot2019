@@ -32,6 +32,7 @@ public class Robot extends TimedRobot {
   public static NetworkTable smartDashboardTable;
   public static NetworkTable camera1Table;
   public static NetworkTableEntry connected;
+  public static NetworkTableEntry timeRunning;
   public static NetworkTableEntry distance;
   public static NetworkTableEntry piTest;
   public static NetworkTableEntry encoderL;
@@ -48,9 +49,11 @@ public class Robot extends TimedRobot {
     smartDashboardTable = inst.getTable("SmartDashboard");
     camera1Table = inst.getTable("RaspberryPi");
     connected = smartDashboardTable.getEntry("robotConnection");
+    timeRunning = smartDashboardTable.getEntry("timeRunning");
     distance = camera1Table.getEntry("distance");
     encoderL = smartDashboardTable.getEntry("encoderL");
     encoderR = smartDashboardTable.getEntry("encoderR");
+    timeRunning.setBoolean(true);
     //piTest = smartDashboardTable.getEntry("timeRunning");
   }
 
@@ -116,6 +119,13 @@ public class Robot extends TimedRobot {
   /**
    * This function is called periodically during operator control.
    */
+
+  @Override
+  public void teleopInit() {
+    //TODO move to autonomous for actual competition
+    timeRunning.setBoolean(true);
+  }
+
   @Override
   public void teleopPeriodic() {
   }
