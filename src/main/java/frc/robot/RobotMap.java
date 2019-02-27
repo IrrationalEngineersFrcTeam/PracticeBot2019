@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -25,7 +26,19 @@ public class RobotMap {
   // public static int rangefinderPort = 1;
   // public static int rangefinderModule = 1;
 
+  public TalonSRX flTalon;
+  public TalonSRX frTalon;
+  public TalonSRX blTalon;
+  public TalonSRX brTalon;
+
+
   public RobotMap() {
+
+    flTalon = new TalonSRX(1);
+    frTalon = new TalonSRX(2);
+    blTalon = new TalonSRX(0);
+    brTalon = new TalonSRX(3);
+
   }
 
 }

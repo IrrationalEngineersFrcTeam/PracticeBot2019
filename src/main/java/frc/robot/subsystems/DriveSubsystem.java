@@ -7,7 +7,10 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.Robot;
 import frc.robot.commands.DriveCommand;
 
 /**
@@ -22,4 +25,15 @@ public class DriveSubsystem extends Subsystem {
     // Set the default command for a subsystem here.
     setDefaultCommand(new DriveCommand());
   }
+
+  public void tank() {
+    double leftspeed = -Robot.oi.joyLeft.getY() * .6;
+    double rightspeed = Robot.oi.joyRight.getY() * .6;
+    System.out.println("LeftSpeed: " + leftspeed + ", RightSpeed: " + rightspeed);
+    Robot.robotmap.flTalon.set(ControlMode.PercentOutput, leftspeed);
+    Robot.robotmap.frTalon.set(ControlMode.PercentOutput, rightspeed);
+    Robot.robotmap.blTalon.set(ControlMode.PercentOutput, leftspeed);
+    Robot.robotmap.brTalon.set(ControlMode.PercentOutput, rightspeed);
+  }
+
 }

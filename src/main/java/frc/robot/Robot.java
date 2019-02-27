@@ -15,6 +15,7 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.subsystems.DriveSubsystem;
 
 
@@ -27,6 +28,7 @@ import frc.robot.subsystems.DriveSubsystem;
  */
 public class Robot extends TimedRobot {
   public static OI oi;
+  public static RobotMap robotmap;
   public static DriveSubsystem drivesub;
   public static NetworkTableInstance inst;
   public static NetworkTable smartDashboardTable;
@@ -44,6 +46,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     oi = new OI();
+    robotmap = new RobotMap();
     drivesub = new DriveSubsystem();
     inst = NetworkTableInstance.getDefault();
     smartDashboardTable = inst.getTable("SmartDashboard");
@@ -74,12 +77,6 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotPeriodic() {
-    double leftspeed = -joy1.getRawAxis(1) * .6;
-    double rightspeed = joy2.getRawAxis(1) * .6;
-    flTalon.set(ControlMode.PercentOutput, leftspeed);
-    frTalon.set(ControlMode.PercentOutput, rightspeed);
-    blTalon.set(ControlMode.PercentOutput, leftspeed);
-    brTalon.set(ControlMode.PercentOutput, rightspeed);
 
     connected.setBoolean(true);
     System.out.println(distance.getDouble(0));
@@ -113,7 +110,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
-
+    Scheduler.getInstance().run();
   }
 
   /**
@@ -128,6 +125,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
+    Scheduler.getInstance().run();
   }
 
   /**
@@ -135,5 +133,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void testPeriodic() {
+    Scheduler.getInstance().run();
+
   }
 }
