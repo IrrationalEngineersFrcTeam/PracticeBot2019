@@ -7,16 +7,15 @@
 
 package frc.robot;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import frc.robot.subsystems.AutoAssistCenteringSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.VisionLineCentering;
 import frc.robot.subsystems.VisionSubsystem;
 
 
@@ -32,12 +31,16 @@ public class Robot extends TimedRobot {
   public static RobotMap robotmap;
   public static DriveSubsystem drivesub;
   public static VisionSubsystem visionSub;
+  public static AutoAssistCenteringSubsystem autocenteringsub;
+  public static VisionLineCentering lineCentering;
   public static NetworkTableInstance inst;
   public static NetworkTable smartDashboardTable;
   public static NetworkTable camera1Table;
+  public static NetworkTable camera2Table;
   public static NetworkTableEntry connected;
   public static NetworkTableEntry timeRunning;
   public static NetworkTableEntry distance;
+  public static NetworkTableEntry LineCenteringDistance;
   public static NetworkTableEntry piTest;
   public static NetworkTableEntry encoderL;
   public static NetworkTableEntry encoderR;
@@ -50,14 +53,17 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    autocenteringsub = new AutoAssistCenteringSubsystem();
     oi = new OI();
     robotmap = new RobotMap();
     drivesub = new DriveSubsystem();
     visionSub = new VisionSubsystem(1, 0, 0);
     inst = NetworkTableInstance.getDefault();
     smartDashboardTable = inst.getTable("SmartDashboard");
-    camera1Table = inst.getTable("RaspberryPi");
+    camera1Table = inst.getTable("Camera1");
+    camera2Table = inst.getTable("Camera2");
     connected = smartDashboardTable.getEntry("robotConnection");
+    LineCenteringDistance = camera2Table.getEntry("yDiff");
     timeRunning = smartDashboardTable.getEntry("timeRunning");
     distance = camera1Table.getEntry("distance");
     //encoderL = smartDashboardTable.getEntry("encoderL");
