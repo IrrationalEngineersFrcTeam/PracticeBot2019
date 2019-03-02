@@ -7,7 +7,6 @@
 
 package frc.robot;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.networktables.NetworkTable;
@@ -56,7 +55,6 @@ public class Robot extends TimedRobot {
     distance = camera1Table.getEntry("distance");
     encoderL = smartDashboardTable.getEntry("encoderL");
     encoderR = smartDashboardTable.getEntry("encoderR");
-    timeRunning.setBoolean(true);
     //piTest = smartDashboardTable.getEntry("timeRunning");
   }
 
@@ -70,10 +68,6 @@ public class Robot extends TimedRobot {
    */
   Joystick joy1 = new Joystick(0);
   Joystick joy2 = new Joystick(1);
-  TalonSRX flTalon = new TalonSRX(1);
-  TalonSRX frTalon = new TalonSRX(2);
-  TalonSRX blTalon = new TalonSRX(0);
-  TalonSRX brTalon = new TalonSRX(3);
 
   @Override
   public void robotPeriodic() {
