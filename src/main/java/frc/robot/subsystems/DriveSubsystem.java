@@ -37,10 +37,15 @@ public class DriveSubsystem extends Subsystem {
     Robot.NavXYaw.setDouble(Robot.oi.joyRight.getX());
 
     System.out.println("LeftSpeed: " + leftspeed + ", RightSpeed: " + rightspeed);
+
     Robot.robotmap.flTalon.set(ControlMode.PercentOutput, leftspeed);
     Robot.robotmap.frTalon.set(ControlMode.PercentOutput, rightspeed);
     Robot.robotmap.blTalon.set(ControlMode.PercentOutput, leftspeed);
     Robot.robotmap.brTalon.set(ControlMode.PercentOutput, rightspeed);
+  }
+
+  public void turnRobot(double turnSpeed, double speed) {
+
   }
 
 }

@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.VisionSubsystem;
 
 
 /**
@@ -30,6 +31,7 @@ public class Robot extends TimedRobot {
   public static OI oi;
   public static RobotMap robotmap;
   public static DriveSubsystem drivesub;
+  public static VisionSubsystem visionSub;
   public static NetworkTableInstance inst;
   public static NetworkTable smartDashboardTable;
   public static NetworkTable camera1Table;
@@ -51,6 +53,7 @@ public class Robot extends TimedRobot {
     oi = new OI();
     robotmap = new RobotMap();
     drivesub = new DriveSubsystem();
+    visionSub = new VisionSubsystem(1, 0, 0);
     inst = NetworkTableInstance.getDefault();
     smartDashboardTable = inst.getTable("SmartDashboard");
     camera1Table = inst.getTable("RaspberryPi");
@@ -74,10 +77,6 @@ public class Robot extends TimedRobot {
    */
   Joystick joy1 = new Joystick(0);
   Joystick joy2 = new Joystick(1);
-  TalonSRX flTalon = new TalonSRX(1);
-  TalonSRX frTalon = new TalonSRX(2);
-  TalonSRX blTalon = new TalonSRX(0);
-  TalonSRX brTalon = new TalonSRX(3);
  
   @Override
   public void robotPeriodic() {
