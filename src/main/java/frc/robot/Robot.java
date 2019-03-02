@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.networktables.NetworkTable;
@@ -38,6 +39,9 @@ public class Robot extends TimedRobot {
   public static NetworkTableEntry piTest;
   public static NetworkTableEntry encoderL;
   public static NetworkTableEntry encoderR;
+  public static NetworkTableEntry NavXYaw;
+  public static double xDiff;
+  public static double yDiff;
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
@@ -53,8 +57,10 @@ public class Robot extends TimedRobot {
     connected = smartDashboardTable.getEntry("robotConnection");
     timeRunning = smartDashboardTable.getEntry("timeRunning");
     distance = camera1Table.getEntry("distance");
-    encoderL = smartDashboardTable.getEntry("encoderL");
-    encoderR = smartDashboardTable.getEntry("encoderR");
+    //encoderL = smartDashboardTable.getEntry("encoderL");
+    //encoderR = smartDashboardTable.getEntry("encoderR");
+    timeRunning.setBoolean(true);
+    
     //piTest = smartDashboardTable.getEntry("timeRunning");
   }
 
@@ -68,7 +74,11 @@ public class Robot extends TimedRobot {
    */
   Joystick joy1 = new Joystick(0);
   Joystick joy2 = new Joystick(1);
-
+  TalonSRX flTalon = new TalonSRX(1);
+  TalonSRX frTalon = new TalonSRX(2);
+  TalonSRX blTalon = new TalonSRX(0);
+  TalonSRX brTalon = new TalonSRX(3);
+ 
   @Override
   public void robotPeriodic() {
 
@@ -76,6 +86,7 @@ public class Robot extends TimedRobot {
     System.out.println(distance.getDouble(0));
     connected.setBoolean(true);
 
+    
     //piTest.setDouble(distance.getDouble(0));
     //encoderL.setDouble(leftspeed);
     //encoderR.setDouble(rightspeed);

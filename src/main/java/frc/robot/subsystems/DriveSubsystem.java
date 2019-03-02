@@ -29,6 +29,7 @@ public class DriveSubsystem extends Subsystem {
   public void tank() {
     double leftspeed = -Robot.oi.joyLeft.getY() * .6;
     double rightspeed = Robot.oi.joyRight.getY() * .6;
+    Robot.fakeEncoder.setDouble(Robot.oi.joyLeft.getY());
     System.out.println("LeftSpeed: " + leftspeed + ", RightSpeed: " + rightspeed);
     Robot.robotmap.flTalon.set(ControlMode.PercentOutput, leftspeed);
     Robot.robotmap.frTalon.set(ControlMode.PercentOutput, rightspeed);
