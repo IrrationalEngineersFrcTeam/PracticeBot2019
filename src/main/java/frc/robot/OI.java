@@ -8,6 +8,8 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.DriveOverLineCommand;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -44,10 +46,14 @@ public class OI {
 
   public Joystick joyLeft;
   public Joystick joyRight;
+  public JoystickButton LineCenterButton;
 
   public OI() {
     joyLeft = new Joystick(0);
     joyRight = new Joystick(1);
+    LineCenterButton = new JoystickButton(joyLeft, 0);
+
+    LineCenterButton.whileHeld(new DriveOverLineCommand());
   }
 
 }
