@@ -7,8 +7,10 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.Robot;
+import frc.robot.subsystems.VisionTargetCentering;
 import com.ctre.phoenix.motorcontrol.ControlMode;
-
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Robot;
 
@@ -22,12 +24,42 @@ public class AutoAssistCenteringSubsystem extends Subsystem
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
+  static double Output = VisionTargetCentering.getOutput();
+  // static boolean IsSeen = Robot.VisionTargetIsSeen.getBoolean(true);
+
+  public void FindTarget()
+  {
+
+    Robot.robotmap.flTalon.set(ControlMode.PercentOutput, -0.3);
+    Robot.robotmap.blTalon.set(ControlMode.PercentOutput, -0.3);
+    Robot.robotmap.frTalon.set(ControlMode.PercentOutput, 0.3);
+    Robot.robotmap.brTalon.set(ControlMode.PercentOutput, 0.3);
+
+  }
+
+  public void CenterOnTarget()
+  {
+
+    if(Output > 0)
+    {
+      Robot.robotmap.flTalon.set(ControlMode.PercentOutput, Output * 0.5);
+      Robot.robotmap.blTalon.set(ControlMode.PercentOutput, Output * 0.5);
+    }
+    else if(Output < 0)
+    {
+      Robot.robotmap.frTalon.set(ControlMode.PercentOutput, Output * 0.5);
+      Robot.robotmap.brTalon.set(ControlMode.PercentOutput, Output * 0.5);
+    }
+
+  }
+
   @Override
   public void initDefaultCommand() 
   {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }
+
   public void DriveOverLine()
   {
     Robot.robotmap.flTalon.set(ControlMode.PercentOutput, Robot.lineCentering.getOutput() * .5);

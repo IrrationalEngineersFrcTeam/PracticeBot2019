@@ -41,12 +41,14 @@ public class Robot extends TimedRobot {
   public static NetworkTableEntry timeRunning;
   public static NetworkTableEntry distance;
   public static NetworkTableEntry LineCenteringDistance;
+  public static NetworkTableEntry VisionTargetDist;
   public static NetworkTableEntry piTest;
   public static NetworkTableEntry encoderL;
   public static NetworkTableEntry encoderR;
   public static NetworkTableEntry NavXYaw;
   public static NetworkTableEntry xDiff;
   public static NetworkTableEntry yDiff;
+  public static NetworkTableEntry VisionTargetIsSeen;
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
@@ -65,12 +67,13 @@ public class Robot extends TimedRobot {
     connected = smartDashboardTable.getEntry("robotConnection");
     LineCenteringDistance = camera2Table.getEntry("yDiff");
     timeRunning = smartDashboardTable.getEntry("timeRunning");
-    distance = camera1Table.getEntry("distance");
+    VisionTargetDist = camera1Table.getEntry("distance");
     encoderL = smartDashboardTable.getEntry("encoderL");
     NavXYaw = smartDashboardTable.getEntry("NavXYaw");
     encoderR = smartDashboardTable.getEntry("encoderR");
     yDiff = camera2Table.getEntry("yDiff");
     timeRunning.setBoolean(true);
+    VisionTargetIsSeen = camera1Table.getEntry("isSeen");
     
     //piTest = smartDashboardTable.getEntry("timeRunning");
   }
