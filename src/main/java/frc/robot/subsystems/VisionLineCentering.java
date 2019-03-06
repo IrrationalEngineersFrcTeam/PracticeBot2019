@@ -22,7 +22,7 @@ public class VisionLineCentering extends PIDSubsystem {
   public VisionLineCentering() {
     // Intert a subsystem name and PID values here
     super("Centering on Line", 0.0, 0.0, 0.0);
-    setSetpoint(0.0);
+    setSetpoint(1.0);
     setAbsoluteTolerance(10);
     setInputRange(-180, 180);
     setOutputRange(-1, 1);
