@@ -35,4 +35,12 @@ public class AutoAssistCenteringSubsystem extends Subsystem
     Robot.robotmap.blTalon.set(ControlMode.PercentOutput, Robot.lineCentering.getOutput() * .5);
     Robot.robotmap.brTalon.set(ControlMode.PercentOutput, Robot.lineCentering.getOutput() * .5);
   }
+
+  public void Stop()
+  {
+    Robot.robotmap.flTalon.set(ControlMode.PercentOutput, 0.0);
+    Robot.robotmap.frTalon.set(ControlMode.PercentOutput, 0.0);
+    Robot.robotmap.blTalon.set(ControlMode.PercentOutput, 0.0);
+    Robot.robotmap.brTalon.set(ControlMode.PercentOutput, 0.0);
+  }
 }
