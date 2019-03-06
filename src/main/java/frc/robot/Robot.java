@@ -61,6 +61,7 @@ public class Robot extends TimedRobot {
     drivesub = new DriveSubsystem();
     visionSub = new VisionSubsystem(1, 0, 0);
     inst = NetworkTableInstance.getDefault();
+    lineCentering = new VisionLineCentering(1.0, 0.0, 0.0);
     smartDashboardTable = inst.getTable("SmartDashboard");
     camera1Table = inst.getTable("Camera1");
     camera2Table = inst.getTable("Camera2");
