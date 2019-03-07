@@ -18,7 +18,7 @@ public class VisionTargetCentering extends PIDSubsystem {
    * Add your docs here.
    */
 
-  public static Double TargetOutput;
+  public double TargetOutput;
 
   public VisionTargetCentering() {
     // Insert a subsystem name and PID values here
@@ -55,14 +55,14 @@ public class VisionTargetCentering extends PIDSubsystem {
     // Use output to drive your system, like a motor
     // e.g. yourMotor.set(output);
 
-    TargetOutput = output;
+    this.TargetOutput = output;
 
   }
 
-  public static double getOutput()
+  public double getOutput()
   {
 
-    return TargetOutput;
+    return this.TargetOutput;
 
   }
 

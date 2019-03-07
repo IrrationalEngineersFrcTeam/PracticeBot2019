@@ -51,7 +51,7 @@ public class OI {
   public OI() {
     joyLeft = new Joystick(0);
     joyRight = new Joystick(1);
-    LineCenterButton = new JoystickButton(joyLeft, 0);
+    LineCenterButton = new JoystickButton(joyLeft, 1);
 
     LineCenterButton.whileHeld(new DriveOverLineCommand());
   }

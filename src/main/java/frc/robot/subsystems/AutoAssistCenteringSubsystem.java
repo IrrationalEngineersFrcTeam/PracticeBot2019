@@ -22,7 +22,7 @@ public class AutoAssistCenteringSubsystem extends Subsystem
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  static double Output = VisionTargetCentering.getOutput();
+  static double Output = Robot.targetCentering.getOutput();
   // static boolean IsSeen = Robot.VisionTargetIsSeen.getBoolean(true);
 
   public void FindTarget()

@@ -27,13 +27,11 @@ public class DriveSubsystem extends Subsystem {
   }
 
   public void tank() {
-    double lJoysY= Robot.oi.joyLeft.getY()  ;
-    double rJoysY = Robot.oi.joyRight.getY() ;
     double leftspeed = -Robot.oi.joyLeft.getY() * .6;
     double rightspeed = Robot.oi.joyRight.getY() * .6;
 
-    Robot.encoderL.setDouble(lJoysY);
-    Robot.encoderL.setDouble(rJoysY);
+    Robot.encoderL.setDouble(Robot.oi.joyLeft.getY());
+    Robot.encoderL.setDouble(Robot.oi.joyRight.getY());
     Robot.NavXYaw.setDouble(Robot.oi.joyRight.getX());
     System.out.println("yDiff = "+ Robot.yDiff.getDouble(0));
 

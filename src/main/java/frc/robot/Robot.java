@@ -17,6 +17,7 @@ import frc.robot.subsystems.AutoAssistCenteringSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.VisionLineCentering;
 import frc.robot.subsystems.VisionSubsystem;
+import frc.robot.subsystems.VisionTargetCentering;
 
 
 /**
@@ -33,6 +34,7 @@ public class Robot extends TimedRobot {
   public static VisionSubsystem visionSub;
   public static AutoAssistCenteringSubsystem autocenteringsub;
   public static VisionLineCentering lineCentering;
+  public static VisionTargetCentering targetCentering;
   public static NetworkTableInstance inst;
   public static NetworkTable smartDashboardTable;
   public static NetworkTable camera1Table;
@@ -55,8 +57,6 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    autocenteringsub = new AutoAssistCenteringSubsystem();
-    oi = new OI();
     robotmap = new RobotMap();
     drivesub = new DriveSubsystem();
     visionSub = new VisionSubsystem(1, 0, 0);
@@ -75,7 +75,9 @@ public class Robot extends TimedRobot {
     yDiff = camera2Table.getEntry("yDiff");
     timeRunning.setBoolean(true);
     VisionTargetIsSeen = camera1Table.getEntry("isSeen");
-    
+    targetCentering = new VisionTargetCentering();
+    autocenteringsub = new AutoAssistCenteringSubsystem();
+    oi = new OI();
     //piTest = smartDashboardTable.getEntry("timeRunning");
   }
 
