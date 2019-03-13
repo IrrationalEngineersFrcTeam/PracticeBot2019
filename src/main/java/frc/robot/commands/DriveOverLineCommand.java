@@ -29,6 +29,8 @@ public class DriveOverLineCommand extends Command {
   @Override
   protected void execute() {
     Robot.autocenteringsub.DriveOverLine();
+    System.out.println("PID Input: " + Robot.yDiff.getDouble(0));
+    System.out.println("PID Output: " + Robot.lineCentering.lineoutput);
   }
 
   // Make this return true when this Command no longer needs to run execute()

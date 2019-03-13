@@ -96,7 +96,7 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
 
     connected.setBoolean(true);
-   
+    //System.out.println(distance.getDouble(0));
     connected.setBoolean(true);
 
     

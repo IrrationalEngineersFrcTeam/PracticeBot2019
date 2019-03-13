@@ -61,9 +61,9 @@ public class AutoAssistCenteringSubsystem extends Subsystem
   public void DriveOverLine()
   {
     Robot.robotmap.flTalon.set(ControlMode.PercentOutput, Robot.lineCentering.getOutput() * .5);
-    Robot.robotmap.frTalon.set(ControlMode.PercentOutput, Robot.lineCentering.getOutput() * .5);
     Robot.robotmap.blTalon.set(ControlMode.PercentOutput, Robot.lineCentering.getOutput() * .5);
-    Robot.robotmap.brTalon.set(ControlMode.PercentOutput, Robot.lineCentering.getOutput() * .5);
+    //Robot.robotmap.frTalon.set(ControlMode.PercentOutput, Robot.lineCentering.getOutput() * .5);
+    //Robot.robotmap.brTalon.set(ControlMode.PercentOutput, Robot.lineCentering.getOutput() * .5);
   }
 
   public void Stop()

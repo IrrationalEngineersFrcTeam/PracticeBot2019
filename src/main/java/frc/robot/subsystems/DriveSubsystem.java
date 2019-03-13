@@ -31,7 +31,7 @@ public class DriveSubsystem extends Subsystem {
     double rightspeed = Robot.oi.joyRight.getY() * .6;
 
     Robot.encoderL.setDouble(Robot.oi.joyLeft.getY());
-    Robot.encoderL.setDouble(Robot.oi.joyRight.getY());
+    Robot.encoderR.setDouble(Robot.oi.joyRight.getY());
     Robot.NavXYaw.setDouble(Robot.oi.joyRight.getX());
     System.out.println("yDiff = "+ Robot.yDiff.getDouble(0));
 

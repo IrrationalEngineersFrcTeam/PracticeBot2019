@@ -46,7 +46,7 @@ public class VisionTargetCentering extends PIDSubsystem {
     // e.g. a sensor, like a potentiometer:
     // yourPot.getAverageVoltage() / kYourMaxVoltage;
 
-    return Robot.VisionTargetDist.getDouble(0);
+    return Robot.yDiff.getDouble(0);
     
   }
 
