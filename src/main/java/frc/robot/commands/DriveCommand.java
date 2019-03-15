@@ -20,7 +20,19 @@ public class DriveCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+  
+    boolean DriveValue = Robot.oi.VisTargetCenter.get();
+  
+    if(DriveValue == false)
+    {
     Robot.drivesub.tank();
+    }
+    else
+    {
+    Robot.drivesub.ArcaceDrive();
+    System.out.println("ArcadeDrive");
+    }
+
   }
 
   // Make this return true when this Command no longer needs to run execute()

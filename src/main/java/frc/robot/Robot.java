@@ -51,6 +51,8 @@ public class Robot extends TimedRobot {
   public static NetworkTableEntry xDiff;
   public static NetworkTableEntry yDiff;
   public static NetworkTableEntry VisionTargetIsSeen;
+
+  public static double PIDTurn;
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
@@ -95,10 +97,11 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
 
-    connected.setBoolean(true);
     //System.out.println(distance.getDouble(0));
     connected.setBoolean(true);
 
+    PIDTurn = VisionTargetDist.getDouble(0);
+    System.out.println(PIDTurn);
     
     //piTest.setDouble(distance.getDouble(0));
     //encoderL.setDouble(leftspeed);

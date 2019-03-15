@@ -33,9 +33,9 @@ public class DriveSubsystem extends Subsystem {
     Robot.encoderL.setDouble(Robot.oi.joyLeft.getY());
     Robot.encoderR.setDouble(Robot.oi.joyRight.getY());
     Robot.NavXYaw.setDouble(Robot.oi.joyRight.getX());
-    System.out.println("yDiff = "+ Robot.yDiff.getDouble(0));
+    //System.out.println("yDiff = "+ Robot.yDiff.getDouble(0));
 
-    System.out.println("LeftSpeed: " + leftspeed + ", RightSpeed: " + rightspeed);
+   // System.out.println("LeftSpeed: " + leftspeed + ", RightSpeed: " + rightspeed);
 
     Robot.robotmap.flTalon.set(ControlMode.PercentOutput, leftspeed);
     Robot.robotmap.frTalon.set(ControlMode.PercentOutput, rightspeed);
@@ -44,6 +44,33 @@ public class DriveSubsystem extends Subsystem {
   }
 
   public void turnRobot(double turnSpeed, double speed) {
+
+  }
+
+  public void ArcaceDrive()
+  {
+
+    double DrivForward = Robot.oi.joyRight.getY();
+    double DriveTurn = Robot.oi.joyRight.getX();
+
+    double LeftSide;
+    double RightSide;
+
+    if(DrivForward > 0)
+    {
+    LeftSide = DrivForward + DriveTurn;
+    RightSide = DrivForward - DriveTurn;
+    }
+    else
+    {
+      LeftSide = DrivForward - DriveTurn;
+      RightSide = DrivForward + DriveTurn;
+    }
+
+    Robot.robotmap.flTalon.set(ControlMode.PercentOutput, -LeftSide * 0.65);
+		Robot.robotmap.frTalon.set(ControlMode.PercentOutput, -LeftSide * 0.65);
+		Robot.robotmap.blTalon.set(ControlMode.PercentOutput, RightSide * 0.65);
+    Robot.robotmap.brTalon.set(ControlMode.PercentOutput, RightSide * 0.65);
 
   }
 

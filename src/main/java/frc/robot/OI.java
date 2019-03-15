@@ -48,17 +48,18 @@ public class OI {
 
   public Joystick joyLeft;
   public Joystick joyRight;
-  public JoystickButton LineCenterButton;
+  public Button LineCenterButton;
   public Button VisTargetCenter;
 
   public OI() {
     joyLeft = new Joystick(0);
     joyRight = new Joystick(1);
+
     LineCenterButton = new JoystickButton(joyLeft, 1);
     VisTargetCenter = new JoystickButton(joyRight, 1);
 
     LineCenterButton.whileHeld(new DriveOverLineCommand());
-    VisTargetCenter.whileHeld(new CenterOnVisTargetCommand());
+    //VisTargetCenter.whileHeld(new CenterOnVisTargetCommand());
   }
 
 }
