@@ -101,7 +101,7 @@ public class Robot extends TimedRobot {
     connected.setBoolean(true);
 
     PIDTurn = VisionTargetDist.getDouble(0);
-    System.out.println(PIDTurn);
+    //System.out.println(PIDTurn);
     
     //piTest.setDouble(distance.getDouble(0));
     //encoderL.setDouble(leftspeed);

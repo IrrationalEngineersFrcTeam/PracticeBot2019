@@ -38,6 +38,8 @@ public class AutoAssistCenteringSubsystem extends Subsystem
   public void CenterOnTarget()
   {
 
+    System.out.println(Output);
+
     if(Output > 0)
     {
       Robot.robotmap.flTalon.set(ControlMode.PercentOutput, Output * 0.5);

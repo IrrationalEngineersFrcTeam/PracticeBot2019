@@ -49,28 +49,29 @@ public class DriveSubsystem extends Subsystem {
 
   public void ArcaceDrive()
   {
-
-    double DrivForward = Robot.oi.joyRight.getY();
-    double DriveTurn = Robot.oi.joyRight.getX();
+    //System.out.println("ArcadeDrive");
+    double DriveForward = Robot.oi.joyRight.getY();
+    double DriveTurn = Robot.PIDTurn;
+    System.out.println(DriveForward);
 
     double LeftSide;
     double RightSide;
 
-    if(DrivForward > 0)
+    if(DriveForward > 0)
     {
-    LeftSide = DrivForward + DriveTurn;
-    RightSide = DrivForward - DriveTurn;
+    LeftSide = DriveForward + DriveTurn;
+    RightSide = DriveForward - DriveTurn;
     }
     else
     {
-      LeftSide = DrivForward - DriveTurn;
-      RightSide = DrivForward + DriveTurn;
+      LeftSide = DriveForward - DriveTurn;
+      RightSide = DriveForward + DriveTurn;
     }
 
-    Robot.robotmap.flTalon.set(ControlMode.PercentOutput, -LeftSide * 0.65);
-		Robot.robotmap.frTalon.set(ControlMode.PercentOutput, -LeftSide * 0.65);
-		Robot.robotmap.blTalon.set(ControlMode.PercentOutput, RightSide * 0.65);
-    Robot.robotmap.brTalon.set(ControlMode.PercentOutput, RightSide * 0.65);
+    Robot.robotmap.flTalon.set(ControlMode.PercentOutput, -LeftSide);
+    Robot.robotmap.frTalon.set(ControlMode.PercentOutput, RightSide);
+    Robot.robotmap.blTalon.set(ControlMode.PercentOutput, -LeftSide);
+    Robot.robotmap.brTalon.set(ControlMode.PercentOutput, RightSide);
 
   }
 

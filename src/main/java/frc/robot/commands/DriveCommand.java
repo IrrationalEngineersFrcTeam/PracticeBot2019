@@ -30,7 +30,6 @@ public class DriveCommand extends Command {
     else
     {
     Robot.drivesub.ArcaceDrive();
-    System.out.println("ArcadeDrive");
     }
 
   }

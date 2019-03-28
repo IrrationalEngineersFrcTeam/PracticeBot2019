@@ -27,6 +27,7 @@ public class VisionTargetCentering extends PIDSubsystem {
     setSetpoint(0.0);
     setAbsoluteTolerance(10.0);
     setOutputRange(-1, 1);
+    enable();
     // Use these to get going:
     // setSetpoint() - Sets where the PID controller should move the system
     // to
@@ -46,7 +47,7 @@ public class VisionTargetCentering extends PIDSubsystem {
     // e.g. a sensor, like a potentiometer:
     // yourPot.getAverageVoltage() / kYourMaxVoltage;
 
-    return Robot.yDiff.getDouble(0);
+    return Robot.VisionTargetDist.getDouble(0);
     
   }
 
