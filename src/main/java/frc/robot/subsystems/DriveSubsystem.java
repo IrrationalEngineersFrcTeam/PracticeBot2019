@@ -51,8 +51,9 @@ public class DriveSubsystem extends Subsystem {
   {
     //System.out.println("ArcadeDrive");
     double DriveForward = Robot.oi.joyRight.getY();
+    //double DriveTurn = Robot.oi.joyRight.getX();
     double DriveTurn = Robot.PIDTurn;
-    System.out.println(DriveForward);
+    System.out.println(DriveTurn);
 
     double LeftSide;
     double RightSide;
@@ -67,6 +68,7 @@ public class DriveSubsystem extends Subsystem {
       LeftSide = DriveForward - DriveTurn;
       RightSide = DriveForward + DriveTurn;
     }
+
 
     Robot.robotmap.flTalon.set(ControlMode.PercentOutput, -LeftSide);
     Robot.robotmap.frTalon.set(ControlMode.PercentOutput, RightSide);

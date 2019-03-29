@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.Button;
 import frc.robot.commands.DriveOverLineCommand;
-import frc.robot.commands.CenterOnVisTargetCommand;
 
 /**
  * This class is the glue that binds the controls on the physical operator
