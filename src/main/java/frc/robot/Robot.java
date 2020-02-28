@@ -123,7 +123,7 @@ public class Robot extends TimedRobot {
     seenToBool = (IsSeen == 1) ? true : false;
 
     PIDTurn = Robot.drivesub.VisionTurn(VaX);
-    //System.out.println(PIDTurn);
+    System.out.println(PIDTurn);
     
     //piTest.setDouble(distance.getDouble(0));
     //encoderL.setDouble(leftspeed);
