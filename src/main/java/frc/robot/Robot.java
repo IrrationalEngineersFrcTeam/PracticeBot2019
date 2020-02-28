@@ -51,6 +51,17 @@ public class Robot extends TimedRobot {
   public static NetworkTableEntry xDiff;
   public static NetworkTableEntry yDiff;
   public static NetworkTableEntry VisionTargetIsSeen;
+  public static NetworkTable LimelightTable;
+  public static NetworkTableEntry ty;
+  public static NetworkTableEntry tx;
+  public static NetworkTableEntry tv;
+  public static double VaX;
+  public static double VaY;
+  public static double IsSeen;
+  public static boolean seenToBool;
+  public static boolean StartTracking;
+
+
 
   public static double PIDTurn;
   /**
@@ -76,9 +87,13 @@ public class Robot extends TimedRobot {
     encoderR = smartDashboardTable.getEntry("encoderR");
     yDiff = camera2Table.getEntry("yDiff");
     timeRunning.setBoolean(true);
-    VisionTargetIsSeen = camera1Table.getEntry("isSeen");
+    VisionTargetIsSeen = LimelightTable.getEntry("tv"); //camera1Table.getEntry("isSeen");
     targetCentering = new VisionTargetCentering();
     autocenteringsub = new AutoAssistCenteringSubsystem();
+    LimelightTable = inst.getTable("limelight");
+    tx = LimelightTable.getEntry("tx");
+    ty = LimelightTable.getEntry("ty");
+    tv = LimelightTable.getEntry("tv");
     oi = new OI();
     //piTest = smartDashboardTable.getEntry("timeRunning");
   }
@@ -100,7 +115,14 @@ public class Robot extends TimedRobot {
     //System.out.println(distance.getDouble(0));
     connected.setBoolean(true);
 
-    PIDTurn = VisionTargetDist.getDouble(0);
+    VaX = tx.getDouble(0.0);
+    VaY = ty.getDouble(0.0);
+    IsSeen = tv.getDouble(0.0);
+
+    StartTracking = oi.visionTracking.get();
+    seenToBool = (IsSeen == 1) ? true : false;
+
+    PIDTurn = Robot.drivesub.VisionTurn(VaX);
     //System.out.println(PIDTurn);
     
     //piTest.setDouble(distance.getDouble(0));

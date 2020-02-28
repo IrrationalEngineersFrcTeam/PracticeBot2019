@@ -21,8 +21,10 @@ public class DriveCommand extends Command {
   @Override
   protected void execute() {
   
-    boolean DriveValue = Robot.oi.VisTargetCenter.get();
+    //boolean DriveValue = Robot.oi.VisTargetCenter.get();
   
+    boolean DriveValue = Robot.StartTracking;
+
     if(DriveValue == false)
     {
     Robot.drivesub.tank();
