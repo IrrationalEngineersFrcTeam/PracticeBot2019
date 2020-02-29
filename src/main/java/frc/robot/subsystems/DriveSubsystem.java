@@ -38,7 +38,7 @@ public class DriveSubsystem extends Subsystem {
       }
       else
       {
-      return -angleX;
+      return -angleX * 0.01;
       }
   
     }
