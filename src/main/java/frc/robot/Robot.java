@@ -89,7 +89,7 @@ public class Robot extends TimedRobot {
     encoderR = smartDashboardTable.getEntry("encoderR");
     yDiff = camera2Table.getEntry("yDiff");
     timeRunning.setBoolean(true);
-    VisionTargetIsSeen = LimelightTable.getEntry("tv"); //camera1Table.getEntry("isSeen");
+    //VisionTargetIsSeen = LimelightTable.getEntry("tv"); //camera1Table.getEntry("isSeen");
     targetCentering = new VisionTargetCentering();
     autocenteringsub = new AutoAssistCenteringSubsystem();
     LimelightTable = inst.getTable("limelight");

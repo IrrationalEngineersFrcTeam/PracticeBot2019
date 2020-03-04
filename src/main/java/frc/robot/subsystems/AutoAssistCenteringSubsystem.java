@@ -38,7 +38,7 @@ public class AutoAssistCenteringSubsystem extends Subsystem
   public void CenterOnTarget()
   {
 
-    System.out.println(Output);
+    //System.out.println(Output);
 
     if(Output > 0)
     {
