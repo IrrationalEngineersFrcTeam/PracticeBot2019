@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.subsystems.AutoAssistCenteringSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.PID;
 import frc.robot.subsystems.VisionLineCentering;
 import frc.robot.subsystems.VisionSubsystem;
 import frc.robot.subsystems.VisionTargetCentering;
@@ -60,6 +61,7 @@ public class Robot extends TimedRobot {
   public static double IsSeen;
   public static boolean seenToBool;
   public static boolean StartTracking;
+  public static PID pid;
 
 
 
@@ -94,6 +96,7 @@ public class Robot extends TimedRobot {
     tx = LimelightTable.getEntry("tx");
     ty = LimelightTable.getEntry("ty");
     tv = LimelightTable.getEntry("tv");
+    pid = new PID(0.01, 0.01, 0.0);
     oi = new OI();
     //piTest = smartDashboardTable.getEntry("timeRunning");
   }
@@ -122,7 +125,8 @@ public class Robot extends TimedRobot {
     StartTracking = oi.visionTracking.get();
     seenToBool = (IsSeen == 1) ? true : false;
 
-    PIDTurn = Robot.drivesub.VisionTurn(VaX);
+    //PIDTurn = Robot.drivesub.VisionTurn(VaX);
+    PIDTurn = Robot.pid.CalculateSpeed(VaX);
     System.out.println(PIDTurn);
     
     //piTest.setDouble(distance.getDouble(0));
