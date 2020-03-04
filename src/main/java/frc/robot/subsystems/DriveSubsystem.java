@@ -32,7 +32,7 @@ public class DriveSubsystem extends Subsystem {
   
       double angleX = AngleX/29;
       
-      if(Math.abs(AngleX)<=2)
+      if(Math.abs(AngleX)<=0.2)
       {
       return 0;
       }

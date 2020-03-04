@@ -96,7 +96,7 @@ public class Robot extends TimedRobot {
     tx = LimelightTable.getEntry("tx");
     ty = LimelightTable.getEntry("ty");
     tv = LimelightTable.getEntry("tv");
-    pid = new PID(0.01, 0.01, 0.0);
+    pid = new PID(0.01, 0.0, 0.0);
     oi = new OI();
     //piTest = smartDashboardTable.getEntry("timeRunning");
   }
@@ -126,7 +126,7 @@ public class Robot extends TimedRobot {
     seenToBool = (IsSeen == 1) ? true : false;
 
     //PIDTurn = Robot.drivesub.VisionTurn(VaX);
-    PIDTurn = Robot.pid.CalculateSpeed(VaX);
+    PIDTurn = -Robot.pid.CalculateSpeed(VaX);
     System.out.println(PIDTurn);
     
     //piTest.setDouble(distance.getDouble(0));
