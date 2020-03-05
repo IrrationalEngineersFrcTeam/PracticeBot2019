@@ -26,6 +26,7 @@ public class DriveSubsystem extends Subsystem {
     setDefaultCommand(new DriveCommand());
   }
 
+  public boolean centeredOnTarget = false;
     //this takes the X angle from the limelight and turns it into a motor output
     public double VisionTurn(double AngleX)
     {
@@ -34,7 +35,8 @@ public class DriveSubsystem extends Subsystem {
       
       if(Math.abs(AngleX)<=0.2)
       {
-      return 0;
+        centeredOnTarget = true;
+        return 0;
       }
       else
       {
