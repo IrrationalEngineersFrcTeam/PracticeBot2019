@@ -123,4 +123,28 @@ public class DriveSubsystem extends Subsystem {
 
   }
 
+  public void ArcadeDrive2(double DriveForward, double DriveTurn)
+  {
+
+    double LeftSide;
+    double RightSide;
+
+    if(DriveForward > 0)
+    {
+    LeftSide = DriveForward + DriveTurn;
+    RightSide = DriveForward - DriveTurn;
+    }
+    else
+    {
+      LeftSide = DriveForward - DriveTurn;
+      RightSide = DriveForward + DriveTurn;
+    }
+
+
+    Robot.robotmap.flTalon.set(ControlMode.PercentOutput, -LeftSide);
+    Robot.robotmap.frTalon.set(ControlMode.PercentOutput, RightSide);
+    Robot.robotmap.blTalon.set(ControlMode.PercentOutput, -LeftSide);
+    Robot.robotmap.brTalon.set(ControlMode.PercentOutput, RightSide);
+  }
+
 }
