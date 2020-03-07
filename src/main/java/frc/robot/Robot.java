@@ -61,10 +61,12 @@ public class Robot extends TimedRobot {
   public static double IsSeen;
   public static boolean seenToBool;
   public static boolean StartTracking;
-  public static PID pid;
+  public static PID pid1;
+  public static PID pid2;
 
 
 
+  public static double PIDSpeed;
   public static double PIDTurn;
   /**
    * This function is run when the robot is first started up and should be
@@ -96,7 +98,8 @@ public class Robot extends TimedRobot {
     tx = LimelightTable.getEntry("tx");
     ty = LimelightTable.getEntry("ty");
     tv = LimelightTable.getEntry("tv");
-    pid = new PID(0.01, 0.0, 0.0);
+    pid1 = new PID(0.01, 0.0, 0.0);
+    pid2 = new PID(0.01, 0.0, 0.0);
     oi = new OI();
     //piTest = smartDashboardTable.getEntry("timeRunning");
   }
@@ -126,9 +129,13 @@ public class Robot extends TimedRobot {
     seenToBool = (IsSeen == 1) ? true : false;
 
     //PIDTurn = Robot.drivesub.VisionTurn(VaX);
-    PIDTurn = -Robot.pid.CalculateSpeed(VaX);
-    System.out.println(PIDTurn);
-    
+    PIDTurn = -Robot.pid1.CalculateSpeed(VaX);
+    PIDSpeed = -Robot.drivesub.AdjustRoboDistance(204, Robot.drivesub.CurrentRoboDistance(VaY, 2.0, 33.75));
+    //System.out.println(PIDTurn);
+    //the mounting angle is either 71.83 or 18.21
+    //System.out.println(Math.abs(Robot.drivesub.CurrentRoboDistance(VaY, 2.0, 33.75)/12));
+    System.out.println(PIDSpeed);
+
     //piTest.setDouble(distance.getDouble(0));
     //encoderL.setDouble(leftspeed);
     //encoderR.setDouble(rightspeed);

@@ -53,10 +53,14 @@ public class DriveSubsystem extends Subsystem {
       double VisRadiansY = Math.toRadians(VisionDegreesY);
       double MountRadiansY = Math.toRadians(MountingDegreesY);
   
+      //this is used if the VT is above the LL, and the LL is pointed below the VT
       //The 98.25 is the hight of the competition target
-      double Hight = 98.25 - MountingHight;
+      double Hight = 95 - MountingHight;
       double TangentAngle = Math.tan(VisRadiansY + MountRadiansY);
-  
+
+      // double Hight = MountingHight - 22.75;
+      // double TangentAngle = Math.tan(-VisRadiansY - MountRadiansY);
+
       double CurrentDistance = Hight/TangentAngle;
   
       return CurrentDistance;
@@ -67,9 +71,24 @@ public class DriveSubsystem extends Subsystem {
     {
   
       double DeltaX = TargetDist - CurrentDist;
-  
-      return DeltaX * -0.1;
-  
+      if(Math.abs(DeltaX) <= 3)
+      {
+        return 0;
+      }
+      // else if (DeltaX >= 0 && DeltaX < .3)
+      // {
+      //   return 0.5;
+      // }
+      // else if (DeltaX <= 0 && DeltaX > -.3)
+      // {
+      //   return -0.5;
+      // }
+      else
+      {
+        return Robot.pid2.CalculateSpeed(DeltaX);
+      }
+
+
     }
 
   public void tank() {
@@ -96,7 +115,8 @@ public class DriveSubsystem extends Subsystem {
   public void ArcaceDrive()
   {
     //System.out.println("ArcadeDrive");
-    double DriveForward = Robot.oi.joyRight.getY();
+    //double DriveForward = Robot.oi.joyRight.getY();
+    double DriveForward = Robot.PIDSpeed * 0.25;
     //double DriveTurn = Robot.oi.joyRight.getX();
     double DriveTurn = Robot.PIDTurn;
     System.out.println(DriveTurn);
@@ -106,8 +126,8 @@ public class DriveSubsystem extends Subsystem {
 
     if(DriveForward > 0)
     {
-    LeftSide = DriveForward + DriveTurn;
-    RightSide = DriveForward - DriveTurn;
+    LeftSide = DriveForward - DriveTurn;
+    RightSide = DriveForward + DriveTurn;
     }
     else
     {
